@@ -41,7 +41,7 @@ public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
                 .and()
                 .withClient("rokobo").secret("secret1").scopes("read","write")
                 .authorities("ADMIN")
-                .authorizedGrantTypes("password").accessTokenValiditySeconds(3600).refreshTokenValiditySeconds(5000);
+                .authorizedGrantTypes("password").accessTokenValiditySeconds(60).refreshTokenValiditySeconds(5000);
     }
 
     @Override
