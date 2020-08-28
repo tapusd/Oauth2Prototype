@@ -46,8 +46,8 @@ public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        // endpoints.tokenStore(tokenStore())
-                endpoints.authenticationManager(authenticationManager)
+        endpoints.tokenStore(tokenStore())
+                .authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService)
                 .accessTokenConverter(getAccessTokenConverter());
     }
@@ -61,14 +61,14 @@ public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
    @Bean
    public AccessTokenConverter getAccessTokenConverter(){
        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-       converter.setSigningKey("123");
+       converter.setSigningKey("KdklKDMfkLKfjeilakdxLKSDJfielKDJfyi");
        return converter;
    } 
 
-//    @Bean
-//    public JwtTokenStore tokenStore(){
-//        return new JwtTokenStore(new CustomTokenEnhancher());
-//    } 
+   @Bean
+   public JwtTokenStore tokenStore(){
+       return new JwtTokenStore(new CustomTokenEnhancher());
+   } 
     
     
 }

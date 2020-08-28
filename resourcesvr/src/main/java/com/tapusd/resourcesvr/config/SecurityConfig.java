@@ -13,12 +13,14 @@ import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenCo
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public JwtAccessTokenConverter getAccessTokenConverter(){
-        JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setSigningKey("123");
-        return converter;
-    }
+    // @Bean
+    // public JwtAccessTokenConverter getAccessTokenConverter(){
+    //     JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
+    //     converter.setSigningKey("SomeRandomKey1");
+    //     converter.setVerifierKey("SomeRandomKey1");
+    //     return converter;
+    // }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
