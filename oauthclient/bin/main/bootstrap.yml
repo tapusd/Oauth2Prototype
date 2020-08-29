@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: oauthclient
+
+security:
+  oauth2:
+    client:
+      id: oauthclient
+      client-secret: secret
+      access-token-uri: http://localhost:8080/oauth/token
+      grant-type: client_credentials
+      scope: server

@@ -34,14 +34,30 @@ public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
 
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory().withClient("roko").secret("secret").scopes("read")
-                .authorizedGrantTypes("password", "refresh_token").accessTokenValiditySeconds(3600)
+        clients.inMemory()
+                .withClient("roko")
+                .secret("secret")
+                .scopes("browser")
+                .authorizedGrantTypes("password", "refresh_token")
+                .accessTokenValiditySeconds(3600)
                 .refreshTokenValiditySeconds(18000)
                 .authorities("USER")
                 .and()
-                .withClient("rokobo").secret("secret1").scopes("read","write")
+                .withClient("rokobo")
+                .secret("secret1")
+                .scopes("read","write")
+                .authorizedGrantTypes("password")
+                .accessTokenValiditySeconds(60)
+                .refreshTokenValiditySeconds(5000)
                 .authorities("ADMIN")
-                .authorizedGrantTypes("password").accessTokenValiditySeconds(60).refreshTokenValiditySeconds(5000);
+                .and()
+                .withClient("oauthclient")
+                .secret("secret")
+                .scopes("server")
+                .authorizedGrantTypes("client_credentials","refresh_token")
+                .accessTokenValiditySeconds(3600)
+                .refreshTokenValiditySeconds(5000);
+                // .redirectUris("http://localhost:8081/");
     }
 
     @Override
