@@ -56,8 +56,15 @@ public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
                 .scopes("server")
                 .authorizedGrantTypes("client_credentials","refresh_token")
                 .accessTokenValiditySeconds(3600)
+                .refreshTokenValiditySeconds(5000)
+                .and()
+                .withClient("resourceserver")
+                .secret("secret")
+                .scopes("server")
+                .authorizedGrantTypes("client_credentials","refresh_token")
+                .accessTokenValiditySeconds(3600)
                 .refreshTokenValiditySeconds(5000);
-                // .redirectUris("http://localhost:8081/");
+                
     }
 
     @Override

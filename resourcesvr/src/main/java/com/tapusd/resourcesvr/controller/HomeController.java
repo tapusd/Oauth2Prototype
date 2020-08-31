@@ -15,13 +15,13 @@ public class HomeController {
     // }
 
     @GetMapping("/user")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('USER') or #oauth2.hasScope('server')")
     public String user(){
         return "Welcome User!";
     }
 
     @GetMapping("/admin")
-    @PreAuthorize("#oauth2.hasScope('server') or hasRole('USER')")
+    @PreAuthorize("hasRole('USER')")
     public String admin(){
         return "Welcome Admin";
     }

@@ -1,3 +1,10 @@
 spring:
   application:
     name: resourceserver
+
+
+# security:
+#   oauth2:
+#     client:
+#       client-id: resourceserver
+#       client-secret: secret
