@@ -17,6 +17,9 @@ eureka:
 
 security:
   oauth2:
+    resource:
+      jwt:
+        key-value: KdklKDMfkLKfjeilakdxLKSDJfielKDJfyi
     client:
      client-id: oauthclient
      client-secret: secret
