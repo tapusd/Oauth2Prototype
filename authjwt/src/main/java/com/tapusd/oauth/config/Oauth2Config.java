@@ -1,5 +1,6 @@
 package com.tapusd.oauth.config;
 
+import com.tapusd.oauth.service.CustomClientDetailsService;
 import com.tapusd.oauth.service.CustomUserDetailsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,38 +33,40 @@ public class Oauth2Config extends AuthorizationServerConfigurerAdapter {
     @Autowired
     private CustomUserDetailsService userDetailsService;
 
+    @Autowired
+    private CustomClientDetailsService clientDetailsService;
+
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory()
-                .withClient("roko")
-                .secret("secret")
-                .scopes("browser")
-                .authorizedGrantTypes("password", "refresh_token")
-                .accessTokenValiditySeconds(3600)
-                .refreshTokenValiditySeconds(18000)
-                .authorities("USER")
-                .and()
-                .withClient("rokobo")
-                .secret("secret1")
-                .scopes("read","write")
-                .authorizedGrantTypes("password")
-                .accessTokenValiditySeconds(60)
-                .refreshTokenValiditySeconds(5000)
-                .authorities("ADMIN")
-                .and()
-                .withClient("oauthclient")
-                .secret("secret")
-                .scopes("server")
-                .authorizedGrantTypes("client_credentials","refresh_token")
-                .accessTokenValiditySeconds(3600)
-                .refreshTokenValiditySeconds(5000)
-                .and()
-                .withClient("resourceserver")
-                .secret("secret")
-                .scopes("server")
-                .authorizedGrantTypes("client_credentials","refresh_token")
-                .accessTokenValiditySeconds(3600)
-                .refreshTokenValiditySeconds(5000);
+        clients.withClientDetails(clientDetailsService);
+        // clients.inMemory()
+        //         .withClient("roko")
+        //         .secret("secret")
+        //         .scopes("browser")
+        //         .authorizedGrantTypes("password", "refresh_token")
+        //         .accessTokenValiditySeconds(3600)
+        //         .refreshTokenValiditySeconds(18000)
+        //         .and()
+        //         .withClient("rokobo")
+        //         .secret("secret1")
+        //         .scopes("read","write")
+        //         .authorizedGrantTypes("password")
+        //         .accessTokenValiditySeconds(60)
+        //         .refreshTokenValiditySeconds(5000)
+        //         .and()
+        //         .withClient("oauthclient")
+        //         .secret("secret")
+        //         .scopes("server")
+        //         .authorizedGrantTypes("client_credentials","refresh_token")
+        //         .accessTokenValiditySeconds(3600)
+        //         .refreshTokenValiditySeconds(5000)
+        //         .and()
+        //         .withClient("resourceserver")
+        //         .secret("secret")
+        //         .scopes("server")
+        //         .authorizedGrantTypes("client_credentials","refresh_token")
+        //         .accessTokenValiditySeconds(3600)
+        //         .refreshTokenValiditySeconds(5000);
                 
     }
 

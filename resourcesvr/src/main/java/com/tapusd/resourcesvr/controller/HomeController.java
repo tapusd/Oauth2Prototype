@@ -15,20 +15,20 @@ public class HomeController {
     // }
 
     @GetMapping("/user")
-    @PreAuthorize("hasRole('USER') or #oauth2.hasScope('server')")
+    @PreAuthorize("hasRole('USER') or #oauth2.hasScope('SERVER')")
     public String user(){
         return "Welcome User!";
     }
 
     @GetMapping("/admin")
-    @PreAuthorize("hasRole('USER')")
+    @PreAuthorize("hasRole('ADMIN')")
     public String admin(){
         return "Welcome Admin";
     }
 
 
     @GetMapping("/me")
-    @PreAuthorize("#oauth2.hasScope('server') or hasRole('ADMIN')")
+    @PreAuthorize("hasRole('ADMIN') or #oauth2.hasScope('SERVER')")
     public Principal user(Principal principal){
         return principal;
     }
