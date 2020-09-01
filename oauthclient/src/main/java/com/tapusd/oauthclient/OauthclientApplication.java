@@ -18,29 +18,30 @@ import org.springframework.web.client.RestTemplate;
 @EnableFeignClients
 @EnableDiscoveryClient
 @EnableResourceServer
-public class OauthclientApplication implements CommandLineRunner {
+public class OauthclientApplication{ // implements CommandLineRunner{
 
 	public static void main(String[] args) {
 		SpringApplication.run(OauthclientApplication.class, args);
 	}
 
-	@Bean
-	@ConfigurationProperties("security.oauth2.client")
-	protected ClientCredentialsResourceDetails oAuthDetails() {
-		return new ClientCredentialsResourceDetails();
-	}
+	//This code is for OauthRestTemplace
+	// @Bean
+	// @ConfigurationProperties("security.oauth2.client")
+	// protected ClientCredentialsResourceDetails oAuthDetails() {
+	// 	return new ClientCredentialsResourceDetails();
+	// }
 
-	@Bean
-	protected RestTemplate restTemplate() {
-		return new OAuth2RestTemplate(oAuthDetails());
-	}
+	// @Bean
+	// protected RestTemplate restTemplate() {
+	// 	return new OAuth2RestTemplate(oAuthDetails());
+	// }
 
-	@Override
-	public void run(String... args) throws Exception {
-		String url = "http://localhost:8081/user";
-		String result = restTemplate().getForObject(url, String.class);
-		System.out.println("RESULT IS::: "+ result);
+	// @Override
+	// public void run(String... args) throws Exception {
+	// 	String url = "http://localhost:8081/user";
+	// 	String result = restTemplate().getForObject(url, String.class);
+	// 	System.out.println("RESULT IS::: "+ result);
 
-	}
+	// }
 
 }
